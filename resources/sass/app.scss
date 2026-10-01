@@ -1,0 +1,301 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+ 
+// Variables
+@import 'variables';
+ 
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+ 
+// DataTables
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
+@import "datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css";
+@import 'datatables.net-select-bs5/css/select.bootstrap5.css';
+
+body{
+    font-family: inter;
+}
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #8a2be2; /* violet */
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #02a049,  #016838); /* violet to light blue */
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #02a049,#016838); /* violet to light blue */
+}
+
+@media (min-width: 768px) {
+    .gradient-form {
+        height: 100vh !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .gradient-custom-2 {
+        border-top-right-radius: .3rem;
+        border-bottom-right-radius: .3rem;
+    }
+}
+
+//nav
+
+.sidenav {
+    height: 100vh; // Use viewport height
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #343a40;
+    overflow: hidden; // Changed from overflow-x
+    transition: width 0.5s, padding 0.5s;
+    padding-top: 10px;
+    white-space: nowrap;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.sidenav .sidenav-content {
+    position: relative;
+    height: calc(100% - 100px); // Adjust based on profile-container height
+    overflow-y: auto;
+    overflow-x: hidden; // Prevent horizontal overflow
+    scrollbar-width: thin;
+    scrollbar-color: #495057 #343a40;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #343a40;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #495057;
+        border-radius: 3px;
+    }
+}
+
+.sidenav a {
+    padding: 10px 30px;
+    text-decoration: none;
+    font-size: 13px;
+    color: #adb5bd;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s, background-color 0.3s;
+    height: 40px;
+}
+
+.sidenav a i.bi-caret-down {
+    display: none;
+}
+
+.sidenav.expanded a i.bi-caret-down {
+    display: inline;
+    margin-left: auto;
+}
+
+.sidenav a i.bi-chevron-down {
+    display: none;
+}
+
+.sidenav.expanded a i.bi-chevron-down {
+    display: inline;
+    margin-left: auto;
+    font-size: 10px;
+}
+
+.sidenav a i {
+    font-size: 20px;
+}
+
+.sidenav a:hover {
+    color: #f8f9fa;
+    background-color: #495057;
+}
+
+.sidenav .hamburger {
+    font-size: 20px;
+    cursor: pointer;
+    color: #adb5bd;
+    padding: 0px 30px;
+    position: sticky; // Make it stay on top
+    top: 0; // Align it to the top
+    background-color: #343a40; // Match the sidenav background
+    z-index: 1; // Ensure it stays above other content
+    width: 100%; // Span the full width of the sidenav
+    box-sizing: border-box; // Include padding in the width calculation
+}
+
+.sidenav.collapsed {
+    width: 80px;
+}
+
+.sidenav.expanded {
+    width: 250px;
+}
+
+.sidenav .nav-icon {
+    display: flex;
+    align-items: center;
+}
+.sidenav .nav-title-text{
+    color: white;
+    display: none;
+    margin-left: 10px;
+}
+.sidenav .nav-text {
+    display: none;
+    margin-left: 15px;
+}
+.sidenav.expanded .nav-title-text {
+    display: inline;
+}
+.sidenav.expanded .nav-text {
+    display: inline;
+}
+
+.subnav {
+    display: flex;
+    flex-direction: column;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: all 0.3s ease-in-out;
+    background-color: rgba(0,0,0,0.4);
+    
+    &.collapsed {
+        max-height: 0;
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    
+    &.expanded {
+        max-height: 500px; // Adjust this value based on your content
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    a {
+        font-size: 13px;
+    }
+}
+
+
+.subnav a {
+    font-size: 13px;
+}
+
+.subnav a i {
+    font-size: 20px;
+}
+
+.subnav a.active {
+    background-color: #007bff !important;
+    color: white;
+}
+
+.sidenav > a.active{
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+.sidenav-link.active {
+    color: #007bff !important;
+}
+
+.content {
+    margin-left: 80px;
+    transition: margin-left 0.5s, width 0.5s;
+    flex-grow: 1;
+    width: calc(100% - 80px);
+}
+
+.sidenav.expanded ~ .content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+}
+
+.profile-container {
+    position: relative; // Changed from absolute
+    width: 100%;
+    padding: 10px 0px;
+    border-top: 1px solid #495057;
+    background-color: #343a40;
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    .sidenav {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidenav.collapsed {
+        width: 100%;
+    }
+    .sidenav.expanded {
+        width: 100%;
+    }
+    .content {
+        margin-left: 0;
+        width: 100%;
+    }
+    .sidenav.expanded ~ .content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+// Auth pages specific styles
+.auth-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    
+    .content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+.icon-btn {
+    height: 70px;
+    background-color: #333333b0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.icon-btn:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.icon-btn i {
+    font-size: 20px; /* Icon size */
+    margin-bottom: 5px;
+}
+
+.icon-bar {
+    padding: 4px;
+    display: grid;
+    gap: 4px;  
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+}
